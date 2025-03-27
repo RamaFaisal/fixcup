@@ -64,3 +64,53 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+SMA
+TIM
+1. Logo SMA
+2. Nama SMA
+
+cp: captain, nama, no telp
+cp: official, nama, no telp
+
+Official min 1 maks 2
+1. Pas foto 3x4
+2. Foto KTP
+
+Pemain min 7 maks 12
+1. Nama Pemain
+2. Pas Foto 3x4
+3. Foto kartu pelajar / surat pernyataan
+
+
+Dokumen
+1. Foto Tim menggunakan jersey Home/Away
+2. Foto Jersey Home dan Away Pemain
+3. Foto Jersey Home dan Away Kiper
+4. Foto kaos kaki pemain dan kiper
+5. Foto I'am ready 3 orang
+5. Surat rekomendasi kegiatan dari sekolah untuk mengikuti lomba
+
+PRODI
+TIM
+1. logo tim
+2. Nama Prodi
+
+Pemain
+1. Nama Pemain
+2. Pas Foto 3x4
+3. Foto Kartu Mahasiswa
+
+Official
+1. Nama Official
+2. Pas foto 3x4
+3. Foto KTM
+
+Dokumentasi
+1. Foto tim menggunakan jersey
+2. Foto jersey pemain
+3. Foto jersey kiper
+4. Foto kaos kaki seragam
+
+Dokumentasi tambahan
+Foto Bukti Pembayaran

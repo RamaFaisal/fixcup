@@ -9,6 +9,7 @@
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    @livewireStyles
 </head>
 <body class="bg-white font-poppins">
 
@@ -19,7 +20,7 @@
             <h1 class="text-lg font-semibold pl-4">FIX CUP</h1>
         </a>
         <div class="hidden md:flex space-x-8">
-            <a href="#" class="nav-link hover:underline">Beranda</a>
+            <a href="#hero" class="nav-link hover:underline">Beranda</a>
             <a href="#kategori" class="nav-link hover:underline">Pendaftaran</a>
             <a href="#guideBook" class="nav-link hover:underline">Guide Book</a>
             <a href="#footer" class="nav-link hover:underline">Contact Person</a>
@@ -27,19 +28,17 @@
     </nav>
 
     {{-- Hero --}}
-    <section class="hero bg-[#7440B9] flex flex-col md:flex-row items-center h-screen w-full px-6 md:px-40 mt-16 gap-6">
+    <section id="hero" class="hero bg-[#7440B9] flex flex-col md:flex-row items-center h-screen w-full px-6 md:px-40 mt-16 gap-6">
         <div class="tulisan flex-1 space-y-8 text-center md:text-left">
             <p class="text-lg font-semibold text-black px-12 py-2 bg-[#F6D2FF] inline-block rounded-full">United Goals</p>
             <h1 class="text-5xl md:text-7xl font-black text-white italic">FIX CUP 6.0</h1>
             <h3 class="text-xl font-bold text-white">
                 Presented by BEM Fakultas Ilmu Komputer Universitas Dian Nuswantoro
             </h3>
-            <p class="text-white text-base">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rerum omnis nobis blanditiis 
-                maxime quas? Suscipit minima illum voluptatem accusantium placeat enim error nam voluptates, 
-                dignissimos similique maxime sit minus.
+            <p class="text-white text-base text-justify">
+                "United GOALS (Great Opportunity for Achievement, Learning, and Skill)" berarti setiap individu dalam tim saling mendukung dan bekerja bersama untuk mencapai tujuan bersama. Setiap anggota tim berkomitmen untuk memberikan yang terbaik bagi tim, sementara tim secara keseluruhan mendukung setiap anggota.
             </p>
-            <a href="#desc">
+            <a href="#desc" class="nav-link">
                 <button class="px-6 py-2 bg-[#7F1999] text-white font-normal rounded-full flex items-center mx-auto md:mx-0">
                 Start <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
@@ -52,9 +51,9 @@
 
     {{-- Deskripsi --}}
     <section id="desc" class="desc text-center px-6 md:px-40 py-28 h-screen/2 flex flex-col justify-center">
-        <h1 class="font-bold text-[#7440B9] text-3xl md:text-4xl mb-6">Apa itu FIX CUP?</h1>
+        <h1 class="font-bold text-[#7440B9] text-3xl md:text-4xl mb-8">Apa itu FIX CUP?</h1>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            Fixcup merupakan kegiatan ntuk mewadahi minat dan bakat non akademik yang dimiliki oleh para Mahasiswa UDINUS FIK maupun calon Mahasiswa UDINUS, diperlukan adanya suatu kegiatan yang dapat menjadi wadah dan penyalur minat bakat para mahasiswa dengan berbagai talenta yang dapat dikompetisikan. Melalui kegiatan FIX CUP 2025 diharapkan mampu menemukan kemampuan di bidang selain akademis yaitu non  akademis yang dapat disaingkan dengan mahasiswa di luar UDINUS serta para calon mahasiswa UDINUS.
         </p>
     </section>
 
@@ -80,14 +79,18 @@
     <section id="kategori" class="kategori px-6 md:px-40 pt-28 pb-8">
         <h1 class="font-bold text-4xl mb-12 text-center">Kategori</h1>
         <div class="container flex flex-row gap-12 w-full items-center justify-center mt-8">
-            <div class="bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col mr-12">
-                <div class="w-52 h-56 bg-[#7440B9] rounded-full flex items-center justify-center">
-                    <img src="poster.png" alt="SMA/SMK" class="w-20">
+            {{-- SMA --}}
+            <a href="{{ route('pendaftaranSMA.index') }}">
+                <div onclick="selectCategory('sma')" class="cursor-pointer bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col mr-12">
+                    <div class="w-52 h-56 bg-[#7440B9] rounded-full flex items-center justify-center">
+                        <img src="poster.png" alt="SMA/SMK" class="w-20">
+                    </div>
+                    <p class="mt-8 font-bold text-xl">SMA/SMK</p>
                 </div>
-                <p class="mt-8 font-bold text-xl">SMA/SMK</p>
-            </div>
+            </a>
 
-            <div class="bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col ml-12">
+            {{-- Prodi --}}
+            <div onclick="selectCategory('prodi')" class="cursor-pointer bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col ml-12">
                 <div class="w-52 h-56 bg-[#7440B9] rounded-full flex items-center justify-center">
                     <img src="poster.png" alt="SMA/SMK" class="w-20">
                 </div>
@@ -199,5 +202,6 @@
             document.getElementById('imageModal').classList.add('hidden');
         }
     </script>
+    @livewireScripts
 </body>
 </html>
