@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProdiRegistrationController;
 use App\Http\Controllers\SmaRegistrationController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\SMAController;
 use App\Livewire\RegistrationForm;
 use Illuminate\Support\Facades\Route;
 
@@ -21,16 +22,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/pendaftaransma', RegistrationForm::class)->name('pendaftaranSMA');
-
-Route::prefix('pendaftaran-sma')->name('pendaftaranSMA.')->group(function () {
-    Route::get('/', [SmaRegistrationController::class, 'index'])->name('index');
-    Route::post('/step/{step}', [SmaRegistrationController::class, 'handleStep'])->name('step');
-    Route::post('/submit', [SmaRegistrationController::class, 'submit'])->name('submit');
-});
-
-Route::prefix('pendaftaran-prodi')->name('pendaftaranProdi.')->group(function () {
-    Route::get('/', [ProdiRegistrationController::class, 'index'])->name('index');
-    Route::post('/step/{step}', [ProdiRegistrationController::class, 'handleStep'])->name('step');
-    Route::post('/submit', [ProdiRegistrationController::class, 'submit'])->name('submit');
-});
+Route::get('/pendaftaran-sma', [SMAController::class, 'create'])->name('pendaftaranSMA.index');
+Route::post('/pendaftaran-sma', [SMAController::class, 'store'])->name('pendaftaranSMA.store');
