@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
-class SMAController extends Controller
+class ProdiController extends Controller
 {
     public function create(Request $request)
     {
         $step = $request->get('step', 1); // default ke step 1
-        return view('pendaftaran.sma', compact('step'));
+        return view('pendaftaran.prodi', compact('step'));
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -22,8 +23,6 @@ class SMAController extends Controller
             'captain_wa' => 'required|string|max:255',
             'official_nama' => 'required|string|max:255',
             'official_wa' => 'required|string|max:255',
-            'capo_nama' => 'nullable|string|max:255',
-            'capo_wa' => 'nullable|string|max:255',
 
             'players' => 'required|array|min:7|max:12',
             'players.*.nama' => 'nullable|string|max:255',
@@ -42,22 +41,16 @@ class SMAController extends Controller
             $logoPath = $request->file('logo')->store('logos', 'public');
         }
 
-        // Buat Tim
         $team = Team::create([
-            'kategori' => 'SMA',
+            'kategori' => 'Prodi',
             'nama' => $request->nama,
             'logo' => $logoPath,
         ]);
 
-        // Simpan Kontak
         $contacts = [
             ['role' => 'captain', 'nama' => $request->captain_nama, 'no_wa' => $request->captain_wa],
             ['role' => 'official', 'nama' => $request->official_nama, 'no_wa' => $request->official_wa],
         ];
-
-        if ($request->filled('capo_nama') && $request->filled('capo_wa')) {
-            $contacts[] = ['role' => 'capo', 'nama' => $request->capo_nama, 'no_wa' => $request->capo_wa];
-        }
 
         foreach ($contacts as $contact) {
             $team->contacts()->create($contact);
@@ -108,6 +101,6 @@ class SMAController extends Controller
             }
         }
 
-        return redirect()->route('home')->with('success', 'Tim berhasil didaftarkan!');
+        return redirect()->route('home')->with('success', 'Tim Prodi berhasil didaftarkan!');
     }
 }

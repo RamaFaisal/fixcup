@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\ProdiRegistrationController;
 use App\Http\Controllers\SmaRegistrationController;
 use App\Http\Controllers\RegistrationController;
@@ -20,7 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/pendaftaran-sma', [SMAController::class, 'create'])->name('pendaftaranSMA.index');
 Route::post('/pendaftaran-sma', [SMAController::class, 'store'])->name('pendaftaranSMA.store');
+
+Route::get('/pendaftaran-prodi', [ProdiController::class, 'create'])->name('pendaftaranProdi.index');
+Route::post('/pendaftaran-prodi', [ProdiController::class, 'store'])->name('pendaftaranProdi.store');

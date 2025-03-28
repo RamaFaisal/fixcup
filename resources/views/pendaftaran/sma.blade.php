@@ -1,170 +1,213 @@
-<!-- resources/views/pendaftaran/sma.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-4xl mx-auto py-12">
-    <form action="{{ route('pendaftaranSMA.store') }}" method="POST" enctype="multipart/form-data" id="multiStepForm">
-        @csrf
+<div class="max-w-xl mx-auto mt-12">
+    <h1 class="text-2xl font-bold mb-6 text-center">Pendaftaran Tim SMA</h1>
 
-        <!-- STEP 1: Nama Sekolah & Logo -->
-        <div class="form-step">
-            <h2 class="text-2xl font-bold mb-4">Step 1: Identitas Sekolah</h2>
-            <input type="hidden" name="kategori" value="SMA">
-            
-            <label class="block mb-2">Nama Sekolah</label>
-            <input type="text" name="nama" class="w-full border rounded px-3 py-2 mb-4" required>
+    @if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    timer: 3000,
+                    showConfirmButton: false,
+                });
+            });
+        </script>
+    @endif
+    
+    <!-- Stepper Bulat -->
+    <div class="flex justify-center items-center gap-8 mb-8">
+        @foreach ([1 => 'Data Tim', 2 => 'Kontak', 3 => 'Pemain', 4 => 'Official'] as $num => $label)
+            <div class="flex flex-col items-center">
+                <div id="circle-{{ $num }}" class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-500">{{ $num }}</div>
+                <span class="text-sm mt-2 text-gray-600">{{ $label }}</span>
+            </div>
+            @if($num < 4)
+                <div class="w-8 h-0.5 bg-gray-300"></div>
+            @endif
+        @endforeach
+    </div>
 
-            <label class="block mb-2">Logo Sekolah</label>
-            <input type="file" name="logo" class="w-full mb-4" required>
-        </div>
+    {{-- Formulir --}}
+    <form id="pendaftaranForm" action="{{ route('pendaftaranSMA.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
 
-        <!-- STEP 2: Kontak -->
-        <div class="form-step hidden">
-            <h2 class="text-2xl font-bold mb-4">Step 2: Kontak</h2>
-            @foreach(['captain', 'official', 'capo'] as $role)
+            {{-- STEP 1 --}}
+            <div id="step-1" class="step">
+                <h2 class="text-xl font-semibold mb-4">Data Team</h2>
                 <div class="mb-4">
-                    <h3 class="font-semibold capitalize">Contact {{ $role }}</h3>
-                    <input type="hidden" name="contacts[{{ $role }}][role]" value="{{ $role }}">
-                    <label>Nama</label>
-                    <input type="text" name="contacts[{{ $role }}][nama]" class="w-full border px-3 py-2 mb-2" {{ $role !== 'capo' ? 'required' : '' }}>
-
-                    <label>No WhatsApp</label>
-                    <input type="number" name="contacts[{{ $role }}][no_wa]" class="w-full border px-3 py-2" {{ $role !== 'capo' ? 'required' : '' }}>
+                    <label class="block font-medium mb-1">Nama Tim</label>
+                    <input type="text" name="nama" class="w-full border rounded p-2" value="{{ old('nama') }}" required>
                 </div>
-            @endforeach
-        </div>
-
-        <!-- STEP 3: Pemain -->
-        <div class="form-step hidden">
-            <h2 class="text-2xl font-bold mb-4">Step 3: Data Pemain</h2>
-            <p class="text-sm text-gray-600 mb-4">* 7 pemain pertama wajib diisi dari total 12</p>
-            @for ($i = 1; $i <= 12; $i++)
-                <div class="mb-4 border p-4 rounded-lg bg-gray-50">
-                    <h3 class="font-semibold mb-2">Pemain {{ $i }} @if($i <= 7)<span class="text-red-500">*</span>@endif</h3>
-
-                    <label>Nama</label>
-                    <input type="text" name="pemain[{{ $i }}][nama]" class="w-full border px-3 py-2 mb-2" @if($i <= 7) required @endif>
-
-                    <label>Pas Foto</label>
-                    <input type="file" name="pemain[{{ $i }}][pas_foto]" class="w-full mb-2" accept="image/*" @if($i <= 7) required @endif>
-
-                    <label>Foto Kartu Pelajar</label>
-                    <input type="file" name="pemain[{{ $i }}][foto_kartu]" class="w-full" accept="image/*" @if($i <= 7) required @endif>
+                <div class="mb-4">
+                    <label class="block font-medium mb-1">Logo Tim</label>
+                    <input type="file" name="logo" class="w-full border rounded p-2" required>
                 </div>
-            @endfor
-        </div>
+            </div>
 
-        <!-- STEP 4: Official -->
-        <div class="form-step hidden">
-            <h2 class="text-2xl font-bold mb-4">Step 4: Data Official</h2>
-            @for ($i = 1; $i <= 2; $i++)
-                <div class="mb-4 border p-4 rounded-lg bg-gray-50">
-                    <h3 class="font-semibold mb-2">Official {{ $i }} @if($i <= 1)<span class="text-red-500">*</span>@endif</h3>
-
-                    <label>Nama</label>
-                    <input type="text" name="official[{{ $i }}][nama]" class="w-full border px-3 py-2 mb-2" @if($i <= 1) required @endif>
-
-                    <label>Pas Foto</label>
-                    <input type="file" name="official[{{ $i }}][pas_foto]" class="w-full mb-2" accept="image/*" @if($i <= 1) required @endif>
-
-                    <label>Foto KTP</label>
-                    <input type="file" name="official[{{ $i }}][foto_ktp]" class="w-full" accept="image/*" @if($i <= 1) required @endif>
+            {{-- STEP 2 --}}
+            <div id="step-2" class="step hidden">
+                <h2 class="text-xl font-semibold mb-4">Contact CP</h2>
+                <div class="mb-4">
+                    <label class="block font-semibold">Nama Captain</label>
+                    <input type="text" name="captain_nama" class="w-full border rounded p-2" value="{{ old('captain_nama') }}" required>
                 </div>
-            @endfor
-        </div>
+                <div class="mb-4">
+                    <label class="block font-semibold">No WA Captain</label>
+                    <input type="text" name="captain_wa" class="w-full border rounded p-2" value="{{ old('captain_wa') }}" required>
+                </div>
 
-        <!-- STEP 5: Dokumen -->
-        <div class="form-step hidden">
-            <h2 class="text-2xl font-bold mb-4">Step 5: Dokumen</h2>
-            <label>Foto Tim Berjersey</label>
-            <input type="file" name="dokumen[foto_tim_berjersey]" class="w-full mb-2" required>
+                <div class="mb-4">
+                    <label class="block font-semibold">Nama Official</label>
+                    <input type="text" name="official_nama" class="w-full border rounded p-2" value="{{ old('official_nama') }}" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block font-semibold">No WA Official</label>
+                    <input type="text" name="official_wa" class="w-full border rounded p-2" value="{{ old('official_wa') }}" required>
+                </div>
 
-            <label>Foto Jersey Pemain</label>
-            <input type="file" name="dokumen[foto_jersey_pemain]" class="w-full mb-2" required>
+                <div class="mb-4">
+                    <label class="block font-semibold">Nama Capo (opsional)</label>
+                    <input type="text" name="capo_nama" class="w-full border rounded p-2" value="{{ old('capo_nama') }}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-semibold">No WA Capo</label>
+                    <input type="text" name="capo_wa" class="w-full border rounded p-2" value="{{ old('capo_wa') }}">
+                </div>
+            </div>
 
-            <label>Foto Jersey Kiper</label>
-            <input type="file" name="dokumen[foto_jersey_kiper]" class="w-full mb-2" required>
+            {{-- STEP 3 --}}
+            <div id="step-3" class="step hidden">
+                <h2 class="text-lg font-bold mb-4">Data Pemain</h2>
+                @for ($i = 1; $i <= 12; $i++)
+                    <div class="mb-6 border p-4 rounded shadow-sm bg-gray-50">
+                        <h3 class="font-semibold mb-2">Pemain {{ $i }}</h3>
+                        <div class="mb-2">
+                            <label class="block font-medium">Nama</label>
+                            <input type="text" name="players[{{ $i }}][nama]" class="w-full border rounded p-2" {{ $i <= 7 ? 'required' : '' }}>
+                        </div>
+                        <div class="mb-2">
+                            <label class="block font-medium">Pas Foto</label>
+                            <input type="file" name="players[{{ $i }}][pas_foto]" accept="image/*" class="w-full border rounded p-2" {{ $i <= 7 ? 'required' : '' }}>
+                        </div>
+                        <div>
+                            <label class="block font-medium">Foto Kartu Pelajar</label>
+                            <input type="file" name="players[{{ $i }}][foto_kartu]" accept="image/*" class="w-full border rounded p-2" {{ $i <= 7 ? 'required' : '' }}>
+                        </div>
+                    </div>
+                @endfor
+            </div>
 
-            <label>Foto Player Satu</label>
-            <input type="file" name="dokumen[foto_player_satu]" class="w-full mb-2">
+            {{-- STEP 4 --}}
+            <div id="step-4" class="step hidden">
+                <h2 class="text-xl font-semibold mb-4">Data Official</h2>
+                @for ($i = 1; $i < 3; $i++)
+                    <div class="mb-6 border p-4 rounded shadow-sm bg-gray-50">
+                        <h3 class="font-semibold mb-2">Official {{ $i }}</h3>
+                        <div class="mb-2">
+                            <label class="block font-medium mb-1">Nama</label>
+                            <input type="text" name="officials[{{ $i }}][nama]" class="w-full border rounded p-2" {{ $i <= 1 ? 'required' : '' }}>
+                        </div>
+                        <div class="mb-2">
+                            <label class="block font-medium mb-1">Pas Foto</label>
+                            <input type="file" name="officials[{{ $i }}][pas_foto]" accept="image/*" class="w-full border rounded p-2" {{ $i <= 1 ? 'required' : '' }}>
+                        </div>
+                        <div class="mb-2">
+                            <label class="block font-medium mb-1">Foto KTP</label>
+                            <input type="file" name="officials[{{ $i }}][foto_ktp]" accept="image/*" class="w-full border rounded p-2" {{ $i <= 1 ? 'required' : '' }}>
+                        </div>
+                    </div>
+                @endfor
+            </div>
 
-            <label>Foto Player Dua</label>
-            <input type="file" name="dokumen[foto_player_dua]" class="w-full mb-2">
+            {{-- Navigation Buttons --}}
+            <div class="flex justify-between mt-6">
+                <button type="button" id="prevBtn" class="bg-gray-300 px-4 py-2 rounded hidden">Sebelumnya</button>
+                <button type="button" id="nextBtn" class="bg-blue-600 text-white px-4 py-2 rounded">Lanjut</button>
+                <button type="submit" id="submitBtn" class="bg-green-600 text-white px-4 py-2 rounded hidden">Submit</button>
+            </div>
+        </form>
+    </div>
 
-            <label>Foto Player Tiga</label>
-            <input type="file" name="dokumen[foto_player_tiga]" class="w-full mb-2">
+    <script>
+        let currentStep = 1;
 
-            <label>Surat Rekomendasi</label>
-            <input type="file" name="dokumen[surat_rekomendasi]" class="w-full mb-2">
-        </div>
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`step-${step}`).classList.remove('hidden');
 
-        <!-- STEP 6: Bukti Pembayaran -->
-        <div class="form-step hidden">
-            <h2 class="text-2xl font-bold mb-4">Step 6: Bukti Pembayaran</h2>
-            <label>Bukti Transfer</label>
-            <input type="file" name="pembayaran" class="w-full" required>
-        </div>
+            document.getElementById('prevBtn').classList.toggle('hidden', step === 1);
+            document.getElementById('nextBtn').classList.toggle('hidden', step === 4);
+            document.getElementById('submitBtn').classList.toggle('hidden', step !== 4);
 
-        <!-- STEP 7: Review -->
-        <div class="form-step hidden">
-            <h2 class="text-2xl font-bold mb-4">Step 7: Review</h2>
-            <p class="text-sm text-gray-500">Silakan periksa kembali data Anda sebelum menekan tombol kirim.</p>
-            <button type="submit" class="mt-4 bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded">Kirim</button>
-        </div>
+            [1, 2, 3, 4].forEach(num => {
+                const circle = document.getElementById(`circle-${num}`);
+                if (num === step) {
+                    circle.classList.remove('border-gray-300', 'text-gray-500');
+                    circle.classList.add('border-blue-600', 'text-blue-600', 'font-bold');
+                } else {
+                    circle.classList.add('border-gray-300', 'text-gray-500');
+                    circle.classList.remove('border-blue-600', 'text-blue-600', 'font-bold');
+                }
+            });
+        }
 
-        <!-- Buttons -->
-        <div class="flex justify-between mt-8">
-            <button type="button" onclick="prevStep()" class="bg-gray-300 hover:bg-gray-400 text-black px-6 py-2 rounded">Sebelumnya</button>
-            <button type="button" onclick="nextStep()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded">Selanjutnya</button>
-        </div>
-    </form>
-</div>
+        function validateStep(step) {
+            const stepEl = document.getElementById(`step-${step}`);
+            const inputs = stepEl.querySelectorAll('input[required]');
+            let valid = true;
 
-<script>
-    let currentStep = 0;
-    const steps = document.querySelectorAll('.form-step');
+            inputs.forEach(input => {
+                if (!input.value) {
+                    input.classList.add('border-red-500');
+                    valid = false;
+                } else {
+                    input.classList.remove('border-red-500');
+                }
+            });
 
-    function showStep(step) {
-        steps.forEach((s, index) => {
-            s.classList.toggle('hidden', index !== step);
+            if (!valid) {
+                if (!Swal.isVisible()) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Lengkapi Data',
+                        text: 'Mohon lengkapi semua field yang wajib diisi sebelum melanjutkan.',
+                    });
+                }
+            }
+
+            return valid;
+        }
+
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', () => {
+                const file = input.files[0];
+                if (file && file.size > 2 * 1024 * 1024) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ukuran File Terlalu Besar',
+                        text: 'Ukuran file tidak boleh lebih dari 2MB.',
+                    });
+                    input.value = ''; // Kosongkan file input
+                }
+            });
         });
-    }
 
-    function nextStep() {
-        const currentForm = steps[currentStep];
-        const inputs = currentForm.querySelectorAll('input, select, textarea');
-        let valid = true;
-
-        inputs.forEach(input => {
-            if (input.hasAttribute('required') && !input.value) {
-                input.classList.add('border-red-500');
-                valid = false;
-            } else {
-                input.classList.remove('border-red-500');
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
             }
         });
 
-        if (!valid) {
-            alert('Harap isi semua kolom yang wajib diisi sebelum melanjutkan.');
-            return;
-        }
-
-        if (currentStep < steps.length - 1) {
-            currentStep++;
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentStep > 1) currentStep--;
             showStep(currentStep);
-        }
-    }
+        });
 
-    function prevStep() {
-        if (currentStep > 0) {
-            currentStep--;
-            showStep(currentStep);
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
         showStep(currentStep);
-    });
-</script>
+    </script>
 @endsection

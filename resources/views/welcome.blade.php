@@ -9,9 +9,28 @@
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireStyles
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
 </head>
 <body class="bg-white font-poppins">
+    
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
 
     {{-- Navbar --}}
     <nav class="bg-[#7440B9] shadow-md w-full py-4 px-6 md:px-40 flex items-center justify-between text-white fixed top-0 left-0 z-50">
@@ -90,12 +109,14 @@
             </a>
 
             {{-- Prodi --}}
-            <div onclick="selectCategory('prodi')" class="cursor-pointer bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col ml-12">
-                <div class="w-52 h-56 bg-[#7440B9] rounded-full flex items-center justify-center">
-                    <img src="poster.png" alt="SMA/SMK" class="w-20">
+            <a href="{{ route('pendaftaranProdi.index') }}">
+                <div onclick="selectCategory('prodi')" class="cursor-pointer bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col ml-12">
+                    <div class="w-52 h-56 bg-[#7440B9] rounded-full flex items-center justify-center">
+                        <img src="poster.png" alt="SMA/SMK" class="w-20">
+                    </div>
+                    <p class="mt-8 font-bold text-xl">Prodi FIK</p>
                 </div>
-                <p class="mt-8 font-bold text-xl">Prodi FIK</p>
-            </div>
+            </a>
         </div>
     </section>
 
