@@ -11,7 +11,7 @@ export default {
                 cp5: "#F7DC2E",
             },
             fontFamily: {
-              poppins: ["Poppins", "sans-serif"],
+                poppins: ["Poppins", "sans-serif"],
             }
         },
     },

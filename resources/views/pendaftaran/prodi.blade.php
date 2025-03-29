@@ -19,31 +19,28 @@
         @endif
 
         <!-- Stepper Bulat -->
-        <div class="flex justify-center items-center gap-6 mb-8">
+        <div class="flex justify-center items-center mb-8">
             @foreach ([1 => 'Tim', 2 => 'Kontak', 3 => 'Pemain', 4 => 'Official', 5 => 'Dokumen', 6 => 'Pembayaran', 7 => 'Review'] as $num => $label)
-                <div class="flex items-center gap-2">
+                <div class="flex items-center">
                     <div class="flex flex-col items-center">
                         <div id="circle-{{ $num }}"
                             class="w-10 h-10 flex items-center justify-center rounded-full 
-                                border-2 border-blue-500 text-blue-500 font-bold
-                                bg-white hover:bg-blue-100 transition duration-300 shadow-md">
-                            {{ $num }}
+                                border-2 text-blue-500 border-blue-500 font-bold
+                                bg-white transition duration-300 shadow-md relative">
+                            <span class="step-number">{{ $num }}</span>
+                            <span id="check-{{ $num }}" class="absolute hidden text-white text-lg font-bold">✓</span>
                         </div>
-                        <span class="text-sm mt-2 text-gray-700 font-medium">{{ $label }}</span>
                     </div>
                     @if ($num < 7)
-                        <div
-                            class="w-10 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-500">
-                        </div>
+                        <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-500"></div>
                     @endif
                 </div>
             @endforeach
         </div>
 
-
         {{-- Formulir --}}
         <form id="pendaftaranForm" action="{{ route('pendaftaranProdi.store') }}" method="POST"
-            enctype="multipart/form-data">
+            enctype="multipart/form-data" class="p-6 rounded-md border-2">
             @csrf
 
             {{-- STEP 1 --}}
@@ -55,8 +52,8 @@
                         required>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-1">Logo Tim</label>
-                    <input type="file" name="logo" class="w-full border rounded p-2" required>
+                    <label class="block font-medium mb-1 font-poppins">Logo Tim</label>
+                    <input type="file" name="logo" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" required>
                 </div>
             </div>
 
@@ -99,12 +96,12 @@
                         <div class="mb-2">
                             <label class="block font-medium">Pas Foto</label>
                             <input type="file" name="players[{{ $i }}][pas_foto]" accept="image/*"
-                                class="w-full border rounded p-2" {{ $i <= 7 ? 'required' : '' }}>
+                                class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" {{ $i <= 7 ? 'required' : '' }}>
                         </div>
                         <div>
                             <label class="block font-medium">Foto Kartu Pelajar</label>
                             <input type="file" name="players[{{ $i }}][foto_kartu]" accept="image/*"
-                                class="w-full border rounded p-2" {{ $i <= 7 ? 'required' : '' }}>
+                                class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" {{ $i <= 7 ? 'required' : '' }}>
                         </div>
                     </div>
                 @endfor
@@ -206,12 +203,35 @@
 
             [1, 2, 3, 4, 5, 6, 7].forEach(num => {
                 const circle = document.getElementById(`circle-${num}`);
-                if (num === step) {
-                    circle.classList.remove('border-gray-300', 'text-gray-500');
-                    circle.classList.add('border-blue-600', 'text-blue-600', 'font-bold');
+                const check = document.getElementById(`check-${num}`);
+                const stepNumber = circle.querySelector('.step-number');
+
+                if (num < step) {
+                    // Step selesai
+                    circle.classList.add('bg-green-500', 'text-white', 'border-green-600');
+                    circle.classList.remove('text-blue-500', 'bg-blue-500', 'border-blue-500');
+
+                    if (check) check.classList.remove('hidden');
+                    if (stepNumber) stepNumber.classList.add('hidden');
+                } else if (num === step) {
+                    // Step aktif
+                    circle.classList.add('bg-blue-500', 'text-white', 'border-blue-600');
+                    circle.classList.remove('bg-green-500', 'border-green-600', 'text-blue-500');
+
+                    if (check) check.classList.add('hidden');
+                    if (stepNumber) {
+                        stepNumber.classList.remove('hidden');
+                        stepNumber.textContent = num;
+                    }
                 } else {
-                    circle.classList.add('border-gray-300', 'text-gray-500');
-                    circle.classList.remove('border-blue-600', 'text-blue-600', 'font-bold');
+                    circle.classList.add('text-blue-500', 'bg-white');
+                    circle.classList.remove('bg-blue-500', 'text-white');
+
+                    if (check) check.classList.add('hidden');
+                    if (stepNumber) {
+                        stepNumber.classList.remove('hidden');
+                        stepNumber.textContent = num;
+                    }
                 }
             });
 
