@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
+use App\Models\Payment;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SMAController extends Controller
 {
@@ -12,6 +15,7 @@ class SMAController extends Controller
         $step = $request->get('step', 1); // default ke step 1
         return view('pendaftaran.sma', compact('step'));
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -34,12 +38,25 @@ class SMAController extends Controller
             'officials.*.nama' => 'nullable|string|max:255',
             'officials.*.pas_foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'officials.*.foto_ktp' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+
+            'foto_tim_berjersey' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_jersey_pemain' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_jersey_kiper' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_player_satu' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_player_dua' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_player_tiga' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'surat_rekomendasi' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
+
+            'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
+
+        // Slug nama tim (contoh: SMAN_1_Example)
+        $teamNameSlug = Str::slug($request->nama, '_');
 
         // Upload logo
         $logoPath = null;
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('logos', 'public');
+            $logoPath = $request->file('logo')->store("{$teamNameSlug}/logo", 'public');
         }
 
         // Buat Tim
@@ -73,11 +90,10 @@ class SMAController extends Controller
         }
 
         // Simpan pemain
-        foreach ($request->players as $playerData) {
-            // Cek kalau nama ada (agar tidak simpan data kosong di pemain ke-8 - 12)
+        foreach ($request->players as $index => $playerData) {
             if (!empty($playerData['nama'])) {
-                $pasFotoPath = $playerData['pas_foto']->store('pas_foto', 'public');
-                $fotoKartuPath = $playerData['foto_kartu']->store('foto_kartu', 'public');
+                $pasFotoPath = $playerData['pas_foto']->store("{$teamNameSlug}/players/pas_foto", 'public');
+                $fotoKartuPath = $playerData['foto_kartu']->store("{$teamNameSlug}/players/foto_kartu", 'public');
 
                 $team->players()->create([
                     'nama' => $playerData['nama'],
@@ -87,6 +103,7 @@ class SMAController extends Controller
             }
         }
 
+        // Validasi official
         $validOfficials = collect($request->officials)->filter(function ($official) {
             return isset($official['nama']) && isset($official['pas_foto']) && isset($official['foto_ktp']);
         });
@@ -95,10 +112,11 @@ class SMAController extends Controller
             return back()->withInput()->withErrors(['officials' => 'Minimal 1 official harus diisi lengkap.']);
         }
 
+        // Simpan official
         foreach ($request->officials as $officialData) {
             if (!empty($officialData['nama']) && isset($officialData['pas_foto']) && isset($officialData['foto_ktp'])) {
-                $pasFotoPath = $officialData['pas_foto']->store('official_pas_foto', 'public');
-                $fotoKTPPath = $officialData['foto_ktp']->store('official_ktp', 'public');
+                $pasFotoPath = $officialData['pas_foto']->store("{$teamNameSlug}/officials/pas_foto", 'public');
+                $fotoKTPPath = $officialData['foto_ktp']->store("{$teamNameSlug}/officials/foto_ktp", 'public');
 
                 $team->officials()->create([
                     'nama' => $officialData['nama'],
@@ -107,6 +125,24 @@ class SMAController extends Controller
                 ]);
             }
         }
+
+        // Simpan dokumen
+        $document = Document::create([
+            'team_id' => $team->id,
+            'foto_tim_berjersey' => $request->file('foto_tim_berjersey')->store("{$teamNameSlug}/dokumen", 'public'),
+            'foto_jersey_pemain' => $request->file('foto_jersey_pemain')->store("{$teamNameSlug}/dokumen", 'public'),
+            'foto_jersey_kiper' => $request->file('foto_jersey_kiper')->store("{$teamNameSlug}/dokumen", 'public'),
+            'foto_player_satu' => $request->hasFile('foto_player_satu') ? $request->file('foto_player_satu')->store("{$teamNameSlug}/dokumen/player", 'public') : null,
+            'foto_player_dua' => $request->hasFile('foto_player_dua') ? $request->file('foto_player_dua')->store("{$teamNameSlug}/dokumen/player", 'public') : null,
+            'foto_player_tiga' => $request->hasFile('foto_player_tiga') ? $request->file('foto_player_tiga')->store("{$teamNameSlug}/dokumen/player", 'public') : null,
+            'surat_rekomendasi' => $request->hasFile('surat_rekomendasi') ? $request->file('surat_rekomendasi')->store("{$teamNameSlug}/dokumen/surat", 'public') : null,
+        ]);
+
+        // Simpan bukti pembayaran
+        $payment = Payment::create([
+            'team_id' => $team->id,
+            'bukti_pembayaran' => $request->file('bukti_pembayaran')->store("{$teamNameSlug}/pembayaran", 'public'),
+        ]);
 
         return redirect()->route('home')->with('success', 'Tim berhasil didaftarkan!');
     }

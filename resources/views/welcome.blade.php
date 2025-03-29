@@ -72,7 +72,7 @@
     <section id="desc" class="desc text-center px-6 md:px-40 py-28 h-screen/2 flex flex-col justify-center">
         <h1 class="font-bold text-[#7440B9] text-3xl md:text-4xl mb-8">Apa itu FIX CUP?</h1>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed">
-            Fixcup merupakan kegiatan ntuk mewadahi minat dan bakat non akademik yang dimiliki oleh para Mahasiswa UDINUS FIK maupun calon Mahasiswa UDINUS, diperlukan adanya suatu kegiatan yang dapat menjadi wadah dan penyalur minat bakat para mahasiswa dengan berbagai talenta yang dapat dikompetisikan. Melalui kegiatan FIX CUP 2025 diharapkan mampu menemukan kemampuan di bidang selain akademis yaitu non  akademis yang dapat disaingkan dengan mahasiswa di luar UDINUS serta para calon mahasiswa UDINUS.
+            Fixcup merupakan kegiatan untuk mewadahi minat dan bakat non akademik yang dimiliki oleh para Mahasiswa UDINUS FIK maupun calon Mahasiswa UDINUS, diperlukan adanya suatu kegiatan yang dapat menjadi wadah dan penyalur minat bakat para mahasiswa dengan berbagai talenta yang dapat dikompetisikan. Melalui kegiatan FIX CUP 2025 diharapkan mampu menemukan kemampuan di bidang selain akademis yaitu non  akademis yang dapat disaingkan dengan mahasiswa di luar UDINUS serta para calon mahasiswa UDINUS.
         </p>
     </section>
 
@@ -102,7 +102,7 @@
             <a href="{{ route('pendaftaranSMA.index') }}">
                 <div onclick="selectCategory('sma')" class="cursor-pointer bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col mr-12">
                     <div class="w-52 h-56 bg-[#7440B9] rounded-full flex items-center justify-center">
-                        <img src="poster.png" alt="SMA/SMK" class="w-20">
+                        <img src="undraw_junior-soccer_0lib.svg" alt="SMA/SMK" class="w-40">
                     </div>
                     <p class="mt-8 font-bold text-xl">SMA/SMK</p>
                 </div>
@@ -112,7 +112,7 @@
             <a href="{{ route('pendaftaranProdi.index') }}">
                 <div onclick="selectCategory('prodi')" class="cursor-pointer bg-white hover:bg-purple-300 w-80 h-96 shadow-lg rounded-2xl items-center justify-center flex flex-col ml-12">
                     <div class="w-52 h-56 bg-[#7440B9] rounded-full flex items-center justify-center">
-                        <img src="poster.png" alt="SMA/SMK" class="w-20">
+                        <img src="undraw_junior-soccer_0lib.svg" alt="SMA/SMK" class="w-40">
                     </div>
                     <p class="mt-8 font-bold text-xl">Prodi FIK</p>
                 </div>
@@ -129,8 +129,7 @@
             <div class="tulisan flex-1 space-y-4">
                 <h1 class="text-4xl font-bold text-[#7440B9] mb-4 text-center">Guide Book</h1>
                 <p class="text-gray-700 text-lg mb-6 text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente dolores, aut reiciendis exercitationem facere 
-                    accusamus voluptate aliquam nulla dolore reprehenderit natus nemo. A incidunt accusamus doloremque fugit sint totam doloribus!
+                    Guide Book Fixcup 6.0 merupakan panduan lengkap berisi informasi teknis, aturan pertandingan, serta tata tertib yang harus dipatuhi oleh seluruh peserta. Tersedia dua jenis panduan, masing-masing disesuaikan untuk peserta dari tingkat SMA/SMK dan mahasiswa Prodi FIK. Pastikan untuk membaca dengan saksama agar tidak ada informasi penting yang terlewat.
                 </p>
                 <div class="gb flex flex-col md:flex-row gap-4">
                     <a href="https://drive.google.com/drive/folders/1B61r8Z6S8i8o9snGlZvNEggk5enxS78i?usp=drive_link" target="_blank"><button class="bg-[#7440B9] text-white font-semibold px-5 py-3 rounded-full shadow-lg hover:bg-purple-600 transition">Guide Book SMA/SMK <i class="fa-solid fa-arrow-right ml-2"></i>
