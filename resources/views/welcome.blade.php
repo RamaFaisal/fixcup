@@ -7,6 +7,11 @@
     <title>Fixcup 6.0</title>
     @vite(['resources/css/app.css'])
 
+    {{-- Poppins Font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +25,7 @@
 
 </head>
 
-<body class="bg-white font-poppins antialiased">
+<body class="bg-white font-poppins antialiased scroll-smooth">
 
     @if (session('success'))
         <script>
@@ -59,7 +64,7 @@
             <h3 class="text-xl font-bold text-white">
                 Presented by BEM Fakultas Ilmu Komputer Universitas Dian Nuswantoro
             </h3>
-            <p class="text-white text-base text-justify">
+            <p class="text-white text-base text-justify font-poppins">
                 "United GOALS (Great Opportunity for Achievement, Learning, and Skill)" berarti setiap individu dalam
                 tim saling mendukung dan bekerja bersama untuk mencapai tujuan bersama. Setiap anggota tim berkomitmen
                 untuk memberikan yang terbaik bagi tim, sementara tim secara keseluruhan mendukung setiap anggota.

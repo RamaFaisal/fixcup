@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
+@section('title', 'Daftar Tim Prodi')
+
 @section('content')
-    <div class="max-w-xl mx-auto mt-12">
-        <h1 class="text-2xl font-bold mb-6 text-center">Pendaftaran Tim Prodi</h1>
+    <div class="w-full md:w-3/4 mx-auto p-6 md:p-8 lg:p-9 mt-24 bg-none md:bg-[#F6D2FF] rounded-none md:rounded-3xl drop-shadow-lg font-poppins">
+
+        {{-- header --}}
+        <div class="header pb-6">
+            <h1 class="text-2xl font-extrabold mb-2 text-center">PENDAFTARAN FIX CUP 6.0</h1>
+            <p class="text-center font-normal sm:font-normal md:font-semibold lg:font-semibold italic">Kategori Prodi</p>
+        </div>
 
         @if (session('success'))
             <script>
@@ -19,41 +26,51 @@
         @endif
 
         <!-- Stepper Bulat -->
-        <div class="flex justify-center items-center mb-8">
-            @foreach ([1 => 'Tim', 2 => 'Kontak', 3 => 'Pemain', 4 => 'Official', 5 => 'Dokumen', 6 => 'Pembayaran', 7 => 'Review'] as $num => $label)
-                <div class="flex items-center">
-                    <div class="flex flex-col items-center">
-                        <div id="circle-{{ $num }}"
-                            class="w-10 h-10 flex items-center justify-center rounded-full 
-                                border-2 text-blue-500 border-blue-500 font-bold
-                                bg-white transition duration-300 shadow-md relative">
-                            <span class="step-number">{{ $num }}</span>
-                            <span id="check-{{ $num }}" class="absolute hidden text-white text-lg font-bold">✓</span>
+        <div class="overflow-x-auto mb-6">
+            <div class="flex flex-nowrap justify-start md:justify-center items-center mb-8 px-2 sm:px-0">
+                @foreach ([1 => 'Tim', 2 => 'Kontak', 3 => 'Pemain', 4 => 'Official', 5 => 'Dokumen', 6 => 'Payment', 7 => 'Review'] as $num => $label)
+                    <div class="flex items-center relative flex-shrink-0">
+                        <!-- Lingkaran + Label -->
+                        <div class="flex flex-col items-center relative">
+                            <div id="circle-{{ $num }}"
+                                class="w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 
+                                    flex items-center justify-center rounded-full 
+                                    border-2 border-purple-500 font-bold text-white
+                                    bg-white transition duration-300 shadow-md relative text-sm sm:text-sm md:text-base lg:text-lg">
+                                <span class="step-number block">{{ $num }}</span>
+                                <span id="check-{{ $num }}" class="absolute hidden text-white text-lg font-bold">✓</span>
+                            </div>
+
+                            <!-- Label di bawah -->
+                            <span class="absolute top-full mt-1 text-[8px] sm:text-xs md:text-sm lg:text-base text-purple-700 font-medium text-center w-max mb-3">
+                                {{ $label }}
+                            </span>
                         </div>
+
+                        @if ($num < 7)
+                            <div class="w-6 md:w-10 lg:w-14 h-0.5 bg-purple-400"></div>
+                        @endif
                     </div>
-                    @if ($num < 7)
-                        <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-500"></div>
-                    @endif
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
 
         {{-- Formulir --}}
         <form id="pendaftaranForm" action="{{ route('pendaftaranProdi.store') }}" method="POST"
-            enctype="multipart/form-data" class="p-6 rounded-md border-2">
+            enctype="multipart/form-data" class="mx-auto max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl border-t-2 border-purple-400 px-6 py-4">
             @csrf
 
             {{-- STEP 1 --}}
             <div id="step-1" class="step">
-                <h2 class="text-xl font-semibold mb-4">Data Team</h2>
+                <p class="text-gray-400 text-xs md:text-sm lg:text-base font-poppins text-center pb-2 sm:pb-2 md:pb-3.5 lg:pb-3.5">*Format file jpg, jpeg, png*</p>
                 <div class="mb-4">
-                    <label class="block font-medium mb-1">Nama Tim</label>
-                    <input type="text" name="nama" class="w-full border rounded p-2" value="{{ old('nama') }}"
+                    <label class="block font-bold text-lg mb-1 p-2">Nama Tim</label>
+                    <input type="text" name="nama" class="w-full border rounded-full py-3 px-5 bg-white" value="{{ old('nama') }}"
                         required>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-1 font-poppins">Logo Tim</label>
-                    <input type="file" name="logo" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" required>
+                    <label class="block font-bold text-lg mb-1 p-2">Logo Tim</label>
+                    <input type="file" name="logo" class="block border-2 rounded-full p-3 bg-white text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" required>
                 </div>
             </div>
 
@@ -121,12 +138,12 @@
                         <div class="mb-2">
                             <label class="block font-medium mb-1">Pas Foto</label>
                             <input type="file" name="officials[{{ $i }}][pas_foto]" accept="image/*"
-                                class="w-full border rounded p-2" {{ $i <= 1 ? 'required' : '' }}>
+                                class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" {{ $i <= 1 ? 'required' : '' }}>
                         </div>
                         <div class="mb-2">
                             <label class="block font-medium mb-1">Foto KTP</label>
                             <input type="file" name="officials[{{ $i }}][foto_ktp]" accept="image/*"
-                                class="w-full border rounded p-2" {{ $i <= 1 ? 'required' : '' }}>
+                                class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" {{ $i <= 1 ? 'required' : '' }}>
                         </div>
                     </div>
                 @endfor
@@ -137,27 +154,27 @@
                 <h2 class="text-xl font-semibold mb-4">Dokumen Tambahan</h2>
                 <div class="mb-4">
                     <label class="block font-medium mb-1">Foto Tim Menggunakan Jersey</label>
-                    <input type="file" name="foto_tim_berjersey" class="w-full border rounded p-2" required>
+                    <input type="file" name="foto_tim_berjersey" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-1">Foto Jersey Pemain</label>
-                    <input type="file" name="foto_jersey_pemain" class="w-full border rounded p-2" required>
+                    <input type="file" name="foto_jersey_pemain" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-1">Foto Jersey Kiper</label>
-                    <input type="file" name="foto_jersey_kiper" class="w-full border rounded p-2" required>
+                    <input type="file" name="foto_jersey_kiper" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-1">Foto Player Satu</label>
-                    <input type="file" name="foto_player_satu" class="w-full border rounded p-2">
+                    <input type="file" name="foto_player_satu" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-1">Foto Player Dua</label>
-                    <input type="file" name="foto_player_dua" class="w-full border rounded p-2">
+                    <input type="file" name="foto_player_dua" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-1">Foto Player Tiga</label>
-                    <input type="file" name="foto_player_tiga" class="w-full border rounded p-2">
+                    <input type="file" name="foto_player_tiga" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
                 </div>
             </div>
 
@@ -166,7 +183,7 @@
                 <h2 class="text-xl font-semibold mb-4">Pembayaran</h2>
                 <div class="mb-4">
                     <label class="block font-medium mb-1">Foto Bukti Transfer</label>
-                    <input type="file" name="bukti_pembayaran" class="w-full border rounded p-2" required>
+                    <input type="file" name="bukti_pembayaran" class="block border-2 rounded text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full" required>
                 </div>
             </div>
 
@@ -182,8 +199,8 @@
 
             {{-- Navigation Buttons --}}
             <div class="flex justify-between mt-6">
-                <button type="button" id="prevBtn" class="bg-gray-300 px-4 py-2 rounded hidden">Sebelumnya</button>
-                <button type="button" id="nextBtn" class="bg-blue-600 text-white px-4 py-2 rounded">Lanjut</button>
+                <button type="button" id="prevBtn" class="flex items-center justify-center bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded-full"><img src="play2.svg" alt="kiri" class="mr-2 w-4"> Back</button>
+                <button type="button" id="nextBtn" class="flex items-center justify-center bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded-full">Next <img src="play.svg" alt="kanan" class="ml-2 w-4"></button>
                 <button type="submit" id="submitBtn"
                     class="bg-green-600 text-white px-4 py-2 rounded hidden">Submit</button>
             </div>
@@ -214,9 +231,8 @@
                     if (check) check.classList.remove('hidden');
                     if (stepNumber) stepNumber.classList.add('hidden');
                 } else if (num === step) {
-                    // Step aktif
-                    circle.classList.add('bg-blue-500', 'text-white', 'border-blue-600');
-                    circle.classList.remove('bg-green-500', 'border-green-600', 'text-blue-500');
+                    circle.classList.add('bg-purple-500', 'text-white');
+                    circle.classList.remove('bg-white', 'text-purple-500');
 
                     if (check) check.classList.add('hidden');
                     if (stepNumber) {
@@ -224,8 +240,8 @@
                         stepNumber.textContent = num;
                     }
                 } else {
-                    circle.classList.add('text-blue-500', 'bg-white');
-                    circle.classList.remove('bg-blue-500', 'text-white');
+                    circle.classList.add('text-purple-500', 'bg-white');
+                    circle.classList.remove('bg-purple-500');
 
                     if (check) check.classList.add('hidden');
                     if (stepNumber) {
