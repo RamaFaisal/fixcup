@@ -75,7 +75,8 @@
                     *Format file jpg, jpeg, png*</p>
                 <div class="mb-4">
                     <label class="block font-semibold text-lg mb-1 p-2">Nama Tim</label>
-                    <input type="text" name="nama" class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
+                    <input type="text" name="nama"
+                        class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
                         value="{{ old('nama') }}" required>
                 </div>
                 <div class="mb-4">
@@ -93,20 +94,24 @@
                     <div class="mb-12 p-3">
                         <h3 class="block font-semibold text-lg mb-1 p-2">Kapten</h3>
                         <label class="block font-normal text-lg mb-1 p-2">Nama</label>
-                        <input type="text" name="captain_nama" class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
+                        <input type="text" name="captain_nama"
+                            class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
                             value="{{ old('captain_nama') }}" required>
                         <label class="block font-normal text-lg mb-1 p-2">No Telepon</label>
-                        <input type="text" name="captain_wa" class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
+                        <input type="text" name="captain_wa"
+                            class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
                             value="{{ old('captain_wa') }}" required>
                     </div>
 
                     <div class="mb-12 p-3">
                         <h3 class="block font-semibold text-lg mb-1 p-2">Official</h3>
                         <label class="block font-normal text-lg mb-1 p-2">Nama</label>
-                        <input type="text" name="official_nama" class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
+                        <input type="text" name="official_nama"
+                            class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
                             value="{{ old('official_nama') }}" required>
                         <label class="block font-normal text-lg mb-1 p-2">No WA</label>
-                        <input type="text" name="official_wa" class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
+                        <input type="text" name="official_wa"
+                            class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
                             value="{{ old('official_wa') }}" required>
                     </div>
                 </div>
@@ -121,7 +126,8 @@
                         <div class="mb-2">
                             <label class="block font-normal text-lg mb-1 p-2">Nama</label>
                             <input type="text" name="players[{{ $i }}][nama]"
-                                class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg" {{ $i <= 7 ? 'required' : '' }}>
+                                class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
+                                {{ $i <= 7 ? 'required' : '' }}>
                         </div>
                         <div class="mb-2">
                             <label class="block font-normal text-lg mb-1 p-2">Pas Foto</label>
@@ -143,12 +149,13 @@
             <div id="step-4" class="step hidden">
                 <h2 class="text-xl font-bold mb-4">Data Official</h2>
                 @for ($i = 1; $i < 3; $i++)
-                    <div class="mb-6 border p-4 rounded shadow-sm bg-gray-50">
+                    <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
                         <h3 class="font-semibold mb-2">Official {{ $i }}</h3>
                         <div class="mb-2">
                             <label class="block font-normal text-lg mb-1 p-2">Nama</label>
                             <input type="text" name="officials[{{ $i }}][nama]"
-                                class="w-full border rounded p-2" {{ $i <= 1 ? 'required' : '' }}>
+                                class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
+                                {{ $i <= 1 ? 'required' : '' }}>
                         </div>
                         <div class="mb-2">
                             <label class="block font-normal text-lg mb-1 p-2">Pas Foto</label>
@@ -169,56 +176,60 @@
             {{-- STEP 5 --}}
             <div id="step-5" class="step hidden">
                 <h2 class="text-xl font-semibold mb-4">Dokumen Tambahan</h2>
-                <div class="mb-4">
-                    <label class="block font-normal text-lg mb-1 p-2">Foto Tim Menggunakan Jersey</label>
-                    <input type="file" name="foto_tim_berjersey"
-                        class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
-                        required>
-                </div>
-                <div class="mb-4">
-                    <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Pemain</label>
-                    <input type="file" name="foto_jersey_pemain"
-                        class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
-                        required>
-                </div>
-                <div class="mb-4">
-                    <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Kiper</label>
-                    <input type="file" name="foto_jersey_kiper"
-                        class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
-                        required>
-                </div>
-                <div class="mb-4">
-                    <label class="block font-normal text-lg mb-1 p-2">Foto Player Satu</label>
-                    <input type="file" name="foto_player_satu"
-                        class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
-                </div>
-                <div class="mb-4">
-                    <label class="block font-normal text-lg mb-1 p-2">Foto Player Dua</label>
-                    <input type="file" name="foto_player_dua"
-                        class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
-                </div>
-                <div class="mb-4">
-                    <label class="block font-normal text-lg mb-1 p-2">Foto Player Tiga</label>
-                    <input type="file" name="foto_player_tiga"
-                        class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
+                <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
+                    <div class="mb-4">
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Tim Menggunakan Jersey</label>
+                        <input type="file" name="foto_tim_berjersey"
+                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Pemain</label>
+                        <input type="file" name="foto_jersey_pemain"
+                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Kiper</label>
+                        <input type="file" name="foto_jersey_kiper"
+                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Satu</label>
+                        <input type="file" name="foto_player_satu"
+                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Dua</label>
+                        <input type="file" name="foto_player_dua"
+                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Tiga</label>
+                        <input type="file" name="foto_player_tiga"
+                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
+                    </div>
                 </div>
             </div>
 
             {{-- STEP 6 --}}
             <div id="step-6" class="step hidden">
                 <h2 class="text-xl font-semibold mb-4">Pembayaran</h2>
-                <div class="mb-4">
-                    <label class="block font-normal text-lg mb-1 p-2">Foto Bukti Transfer</label>
-                    <input type="file" name="bukti_pembayaran"
-                        class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
-                        required>
+                <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
+                    <div class="mb-4">
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Bukti Transfer</label>
+                        <input type="file" name="bukti_pembayaran"
+                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
+                            required>
+                    </div>
                 </div>
             </div>
 
             {{-- STEP 7 --}}
             <div id="step-7" class="step hidden">
                 <h2 class="text-xl font-semibold mb-4">Review Pendaftaran</h2>
-                <div class="overflow-x-auto my-6 rounded-lg shadow border border-gray-200">
+                <div class="overflow-x-auto my-6 rounded-xl shadow border border-gray-200">
                     <table id="previewData" class="min-w-full divide-y divide-gray-200 text-sm text-left">
                         <!-- Isi tabel diisi dari JavaScript -->
                     </table>

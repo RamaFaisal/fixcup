@@ -115,7 +115,7 @@
                     <div class="w-52 h-56 bg-[#7440B9] rounded-full hidden md:flex items-center justify-center">
                         <img src="undraw_junior-soccer_0lib.svg" alt="SMA/SMK" class="w-40">
                     </div>
-                    <p class="mt-0 md:mt-8 font-bold text-xl">SMA/SMK</p>
+                    <p class="mt-0 md:mt-8 font-bold text-xl">SMA / SMK</p>
                 </div>
             </a>
 
