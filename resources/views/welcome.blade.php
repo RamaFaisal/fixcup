@@ -64,7 +64,7 @@
                 Presented by BEM Fakultas Ilmu Komputer Universitas Dian Nuswantoro
             </h3>
             <p class="text-white text-base text-justify hidden sm:hidden md:hidden lg:flex">
-                "United GOALS (Great Opportunity for Achievement, Learning, and Skill)" berarti setiap individu dalam tim saling mendukung dan bekerja bersama untuk mencapai tujuan bersama. Setiap anggota tim berkomitmen untuk memberikan yang terbaik bagi tim, sementara tim secara keseluruhan mendukung setiap anggota.
+                "United GOALS (Great Opportunity for Achievement, Learning, and Skill)" memiliki arti setiap individu dalam tim saling mendukung dan bekerja sama dalam mencapai tujuan bersama serta berkomitmen untuk meraih prestasi dan berkembang menjadi lebih baik.
             </p>
             <a href="#kategori" class="nav-link">
                 <button class="px-6 py-2 bg-[#7F1999] text-white font-normal rounded-full sm: flex items-center max-sm:mb-8 mx-auto md:mx-0">
@@ -81,7 +81,7 @@
     <section id="desc" class="desc text-center px-6 md:px-40 py-28 h-screen/2 flex flex-col justify-center">
         <h1 class="font-bold text-[#7440B9] text-3xl md:text-4xl mb-8">Apa itu FIX CUP?</h1>
         <p class="text-xl md:text-2xl text-gray-700 text-justify md:text-center leading-relaxed">
-            FIXCUP merupakan kegiatan untuk mewadahi minat dan bakat non akademik yang dimiliki oleh para Mahasiswa UDINUS FIK maupun calon Mahasiswa UDINUS, diperlukan adanya suatu kegiatan yang dapat menjadi wadah dan penyalur minat bakat para mahasiswa dengan berbagai talenta yang dapat dikompetisikan. Melalui kegiatan FIX CUP 2025 diharapkan mampu menemukan kemampuan di bidang selain akademis yaitu non akademis yang dapat disaingkan dengan mahasiswa di luar UDINUS serta para calon mahasiswa UDINUS.
+            FIXCUP merupakan kegiatan untuk mewadahi minat dan bakat non akademik yang dimiliki oleh para Mahasiswa FIK UDINUS maupun calon Mahasiswa UDINUS, diperlukan adanya suatu kegiatan yang dapat menjadi wadah dan penyalur minat bakat para mahasiswa dengan berbagai talenta yang dapat dikompetisikan. Melalui kegiatan FIX CUP 2025 diharapkan mampu menemukan kemampuan di bidang non akademis yang dapat disaingkan dengan mahasiswa di luar UDINUS serta para calon mahasiswa UDINUS.
         </p>
     </section>
 
@@ -194,25 +194,25 @@
             <div class="hidden md:block w-[2px] bg-white h-56"></div>
 
             <!-- Bagian Kanan: Sosial Media -->
-            <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-6 ml-8">
-                <h2 class="font-bold text-lg md:text-xl mb-6">Ikuti Kami</h2>
-                <div class="flex items-center gap-3">
-                    <i class="fa-brands fa-instagram fa-xl"></i>
+            <div class="flex flex-col text-center space-y-6 ml-0 sm:ml-2 md:ml-8 lg:md-8">
+                <h2 class="font-bold text-lg md:text-xl mb-6 text-center">Ikuti Kami</h2>
+                <div class="flex items-center gap-3 text-left">
+                    <i class="fa-brands fa-instagram text-sm sm:text-lg md:text-xl lg:text-xl"></i>
                     <p class="text-sm sm:text-sm md:text-base lg:text-lg"><a href="https://www.instagram.com/fixcup.udinus/" target="_blank" class="hover:underline">@fixcup.udinus</a> / <a href="https://www.instagram.com/bemfikudinus/" target="_blank" class="hover:underline">@bemfikudinus</a></p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-globe fa-xl"></i>
+                <div class="flex items-center gap-3 text-left">
+                    <i class="fa-solid fa-globe text-sm sm:text-lg md:text-xl lg:text-xl"></i>
                     <p class="text-sm sm:text-sm md:text-base lg:text-lg"><a href="https://bemfikdinus.com/" target="_blank" class="hover:underline">bemfikdinus.com</a></p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <i class="fa-brands fa-whatsapp fa-xl"></i>
+                <div class="flex items-center gap-3 text-left">
+                    <i class="fa-brands fa-whatsapp text-sm sm:text-lg md:text-xl lg:text-xl"></i>
                     <p class="text-sm sm:text-sm md:text-base lg:text-lg"><a href="http://wa.me/6285141330040" target="_blank" class="hover:underline">0851-4133-0040</a> / <a href="http://wa.me/6285802900858" target="_blank" class="hover:underline">0858-0290-0858</a></p>
                 </div>
             </div>
         </div>
 
         <!-- Copyright -->
-        <p class="text-center text-xs md:text-sm mt-8 pb-4">&copy; 2025, All Rights Reserved.</p>
+        <p class="text-center text-xs md:text-sm mt-8 pb-4">&copy; 2025, BEM FIK UDINUS.</p>
     </section>
 
     {{-- Added --}}
