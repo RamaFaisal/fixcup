@@ -71,7 +71,7 @@
             </a>
         </div>
         <div class="maskot flex-1 flex justify-center mt-8 md:mt-0 max-sm:mt-10 max-sm:flex-0 w-full ">
-            <img src="Pose3.png" alt="Maskot Fixcup 6.0" class="w-48 sm:w-48 md:w-64 sm:mt-12 drop-shadow-2xl ml-4 ">
+            <img src="Pose3.png" alt="Maskot Fixcup 6.0" class="w-48 sm:w-48 md:w-64 lg:w-full sm:mt-12 drop-shadow-2xl ml-4 ">
         </div>
     </section>
 
