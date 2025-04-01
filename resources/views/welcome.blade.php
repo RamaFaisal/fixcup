@@ -61,7 +61,7 @@
             <h3 class="text-xl font-bold text-white hidden-mobile">
                 Presented by BEM Fakultas Ilmu Komputer Universitas Dian Nuswantoro
             </h3>
-            <p class="text-white text-base text-justify">
+            <p class="text-white text-base text-justify hidden sm:hidden md:hidden lg:flex">
                 "United GOALS (Great Opportunity for Achievement, Learning, and Skill)" berarti setiap individu dalam tim saling mendukung dan bekerja bersama untuk mencapai tujuan bersama. Setiap anggota tim berkomitmen untuk memberikan yang terbaik bagi tim, sementara tim secara keseluruhan mendukung setiap anggota.
             </p>
             <a href="#kategori" class="nav-link">
@@ -104,7 +104,7 @@
 
     {{-- Kategori --}}
     <section id="kategori" class="kategori px-6 md:px-40 pt-28 pb-8">
-        <h1 class="font-bold text-4xl mb-10 text-center">Kategori</h1>
+        <h1 class="font-bold text-4xl mb-10 text-center text-[#7440B9]">Formulir Pendaftaran</h1>
         <p class="text-center text-lg text-gray-600 mb-10">Pilih salah satu kategori di bawah ini berdasarkan asal institusi
             tim Anda untuk melanjutkan ke tahap pendaftaran.</p>
         <div class="container flex flex-row gap gap-8 sm:gap-12md:gap-20 w-full items-center justify-center mt-8 max-sm:flex-col max-sm:justify-center max-sm:items-center">
@@ -196,15 +196,15 @@
                 <h2 class="font-bold text-lg md:text-xl mb-6">Ikuti Kami</h2>
                 <div class="flex items-center gap-3">
                     <i class="fa-brands fa-instagram fa-xl"></i>
-                    <p class="text-lg"><a href="https://www.instagram.com/fixcup.udinus/" target="_blank">@fixcup.udinus</a> / <a href="https://www.instagram.com/bemfikudinus/" target="_blank">@bemfikudinus</a></p>
+                    <p class="text-sm sm:text-sm md:text-base lg:text-lg"><a href="https://www.instagram.com/fixcup.udinus/" target="_blank" class="hover:underline">@fixcup.udinus</a> / <a href="https://www.instagram.com/bemfikudinus/" target="_blank" class="hover:underline">@bemfikudinus</a></p>
                 </div>
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-globe fa-xl"></i>
-                    <p class="text-lg"><a href="https://bemfikdinus.com/" target="_blank">bemfikdinus.com</a></p>
+                    <p class="text-sm sm:text-sm md:text-base lg:text-lg"><a href="https://bemfikdinus.com/" target="_blank" class="hover:underline">bemfikdinus.com</a></p>
                 </div>
                 <div class="flex items-center gap-3">
                     <i class="fa-brands fa-whatsapp fa-xl"></i>
-                    <p class="text-lg"><a href="http://wa.me/6285141330040" target="_blank">0851-4133-0040</a> / <a href="http://wa.me/6285802900858" target="_blank">0858-0290-0858</a></p>
+                    <p class="text-sm sm:text-sm md:text-base lg:text-lg"><a href="http://wa.me/6285141330040" target="_blank" class="hover:underline">0851-4133-0040</a> / <a href="http://wa.me/6285802900858" target="_blank" class="hover:underline">0858-0290-0858</a></p>
                 </div>
             </div>
         </div>
