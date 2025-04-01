@@ -42,10 +42,10 @@ class SMAController extends Controller
             'foto_tim_berjersey' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'foto_jersey_pemain' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'foto_jersey_kiper' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'surat_rekomendasi' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
             'foto_player_satu' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'foto_player_dua' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'foto_player_tiga' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'surat_rekomendasi' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
 
             'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
@@ -132,10 +132,10 @@ class SMAController extends Controller
             'foto_tim_berjersey' => $request->file('foto_tim_berjersey')->store("{$teamNameSlug}/dokumen", 'public'),
             'foto_jersey_pemain' => $request->file('foto_jersey_pemain')->store("{$teamNameSlug}/dokumen", 'public'),
             'foto_jersey_kiper' => $request->file('foto_jersey_kiper')->store("{$teamNameSlug}/dokumen", 'public'),
+            'surat_rekomendasi' => $request->hasFile('surat_rekomendasi') ? $request->file('surat_rekomendasi')->store("{$teamNameSlug}/dokumen/surat", 'public') : null,
             'foto_player_satu' => $request->hasFile('foto_player_satu') ? $request->file('foto_player_satu')->store("{$teamNameSlug}/dokumen/player", 'public') : null,
             'foto_player_dua' => $request->hasFile('foto_player_dua') ? $request->file('foto_player_dua')->store("{$teamNameSlug}/dokumen/player", 'public') : null,
             'foto_player_tiga' => $request->hasFile('foto_player_tiga') ? $request->file('foto_player_tiga')->store("{$teamNameSlug}/dokumen/player", 'public') : null,
-            'surat_rekomendasi' => $request->hasFile('surat_rekomendasi') ? $request->file('surat_rekomendasi')->store("{$teamNameSlug}/dokumen/surat", 'public') : null,
         ]);
 
         // Simpan bukti pembayaran

@@ -65,7 +65,7 @@
         {{-- Formulir --}}
         <form id="pendaftaranForm" action="{{ route('pendaftaranProdi.store') }}" method="POST"
             enctype="multipart/form-data"
-            class="mx-auto max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl border-t-2 border-purple-400 px-3 py-2 md:px-6 md:py-4">
+            class="mx-auto max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl border-t-2 border-purple-400 px-3 py-2 sm:py-4 md:px-6 md:py-4">
             @csrf
 
             {{-- STEP 1 --}}
@@ -74,13 +74,13 @@
                     class="text-gray-400 text-xs md:text-sm lg:text-base font-poppins text-center pb-2 sm:pb-2 md:pb-3.5 lg:pb-3.5">
                     *Format file jpg, jpeg, png*</p>
                 <div class="mb-4">
-                    <label class="block font-semibold text-lg mb-1 p-2">Nama Tim</label>
+                    <label class="block font-semibold text-lg mb-1 p-2">Nama Prodi</label>
                     <input type="text" name="nama"
                         class="w-full border-2 border-purple-500 rounded-full py-3 px-5 bg-white drop-shadow-lg"
                         value="{{ old('nama') }}" required>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-semibold text-lg mb-1 p-2">Logo Tim</label>
+                    <label class="block font-semibold text-lg mb-1 p-2">Logo Prodi</label>
                     <input type="file" name="logo"
                         class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                         required>
@@ -119,6 +119,9 @@
 
             {{-- STEP 3 --}}
             <div id="step-3" class="step hidden">
+                <p
+                    class="text-gray-400 text-xs md:text-sm lg:text-base font-poppins text-center pb-2 sm:pb-2 md:pb-3.5 lg:pb-3.5">
+                    *Minimal 7 pemain dalam setiap tim dan Format file jpg, jpeg, png*</p>
                 <h2 class="text-xl font-bold mb-4">Data Pemain</h2>
                 @for ($i = 1; $i <= 12; $i++)
                     <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
@@ -130,13 +133,13 @@
                                 {{ $i <= 7 ? 'required' : '' }}>
                         </div>
                         <div class="mb-2">
-                            <label class="block font-normal text-lg mb-1 p-2">Pas Foto</label>
+                            <label class="block font-normal text-lg mb-1 p-2">Pas Foto <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                             <input type="file" name="players[{{ $i }}][pas_foto]" accept="image/*"
                                 class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                                 {{ $i <= 7 ? 'required' : '' }}>
                         </div>
                         <div>
-                            <label class="block font-normal text-lg mb-1 p-2">Foto Kartu Pelajar</label>
+                            <label class="block font-normal text-lg mb-1 p-2">Foto Kartu Mahasiswa <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                             <input type="file" name="players[{{ $i }}][foto_kartu]" accept="image/*"
                                 class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                                 {{ $i <= 7 ? 'required' : '' }}>
@@ -147,6 +150,9 @@
 
             {{-- STEP 4 --}}
             <div id="step-4" class="step hidden">
+              <p
+                    class="text-gray-400 text-xs md:text-sm lg:text-base font-poppins text-center pb-2 sm:pb-2 md:pb-3.5 lg:pb-3.5">
+                    *Minimal 1 official dalam setiap tim dan Format file jpg, jpeg, png*</p>
                 <h2 class="text-xl font-bold mb-4">Data Official</h2>
                 @for ($i = 1; $i < 3; $i++)
                     <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
@@ -158,13 +164,13 @@
                                 {{ $i <= 1 ? 'required' : '' }}>
                         </div>
                         <div class="mb-2">
-                            <label class="block font-normal text-lg mb-1 p-2">Pas Foto</label>
+                            <label class="block font-normal text-lg mb-1 p-2">Pas Foto <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                             <input type="file" name="officials[{{ $i }}][pas_foto]" accept="image/*"
                                 class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                                 {{ $i <= 1 ? 'required' : '' }}>
                         </div>
                         <div class="mb-2">
-                            <label class="block font-normal text-lg mb-1 p-2">Foto KTP</label>
+                            <label class="block font-normal text-lg mb-1 p-2">Foto KTP <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                             <input type="file" name="officials[{{ $i }}][foto_ktp]" accept="image/*"
                                 class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                                 {{ $i <= 1 ? 'required' : '' }}>
@@ -175,38 +181,45 @@
 
             {{-- STEP 5 --}}
             <div id="step-5" class="step hidden">
+              <p
+                    class="text-gray-400 text-xs md:text-sm lg:text-base font-poppins text-center pb-2 sm:pb-2 md:pb-3.5 lg:pb-3.5">
+                    *Format file jpg, jpeg, png*</p>
                 <h2 class="text-xl font-semibold mb-4">Dokumen Tambahan</h2>
                 <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Foto Tim Menggunakan Jersey</label>
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Tim Menggunakan Jersey <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="foto_tim_berjersey"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                             required>
                     </div>
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Pemain</label>
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Pemain <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="foto_jersey_pemain"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                             required>
                     </div>
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Kiper</label>
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Jersey Kiper <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="foto_jersey_kiper"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                             required>
                     </div>
+                    <div class="my-8 flex flex-col items-center justify-center">
+                        <span class="block font-normal text-lg mb-1 p-2">Contoh foto 3 orang</span>
+                        <img src="ThreePerson.jpg" alt="Contoh foto 3 orang" class="w-56 flex items-center justify-center border-2 border-purple-500 rounded-lg drop-shadow-lg">
+                    </div>
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Satu</label>
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Satu <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="foto_player_satu"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
                     </div>
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Dua</label>
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Dua <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="foto_player_dua"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
                     </div>
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Tiga</label>
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Player Tiga <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="foto_player_tiga"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
                     </div>
@@ -215,10 +228,13 @@
 
             {{-- STEP 6 --}}
             <div id="step-6" class="step hidden">
+                <p
+                    class="text-gray-400 text-xs md:text-sm lg:text-base font-poppins text-center pb-2 sm:pb-2 md:pb-3.5 lg:pb-3.5">
+                      *Format file jpg, jpeg, png*</p>
                 <h2 class="text-xl font-semibold mb-4">Pembayaran</h2>
                 <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Foto Bukti Transfer</label>
+                        <label class="block font-normal text-lg mb-1 p-2">Foto Bukti Transfer <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="bukti_pembayaran"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                             required>
