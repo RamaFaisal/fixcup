@@ -17,7 +17,7 @@
 <body class="p-0 lg:p-4 font-poppins antialiased bg-[#F6D2FF] md:bg-white">
 
     {{-- navbar --}}
-    <nav class="bg-[#7440B9] shadow-md w-full py-4 px-6 md:px-40 flex items-center justify-between text-white fixed top-0 left-0 z-50">
+    <nav class="font-poppins bg-[#7440B9] shadow-md w-full py-4 px-6 md:px-40 flex items-center justify-between text-white fixed top-0 left-0 z-50">
         <a href="#" class="flex items-center">
             <img src="LogoFixcupPutih.png" alt="Fixcup 6.0" class="h-12 md:h-16">
             <h1 class="text-lg font-semibold pl-4">FIX CUP</h1>
