@@ -80,7 +80,7 @@
                         value="{{ old('nama') }}" required>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-semibold text-lg mb-1 p-2">Logo Prodi</label>
+                    <label class="block font-semibold text-lg mb-1 p-2">Logo Prodi <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                     <input type="file" name="logo"
                         class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
                         required>
@@ -230,14 +230,22 @@
             <div id="step-6" class="step hidden">
                 <p
                     class="text-gray-400 text-xs md:text-sm lg:text-base font-poppins text-center pb-2 sm:pb-2 md:pb-3.5 lg:pb-3.5">
-                      *Format file jpg, jpeg, png*</p>
+                    *Format file jpg, jpeg, png*</p>
                 <h2 class="text-xl font-semibold mb-4">Pembayaran</h2>
-                <div class="mb-6 border p-4 rounded-xl shadow-sm bg-gray-50">
-                    <div class="mb-4">
+                <div class="mb-6 border p-5 rounded-xl shadow-sm bg-gray-50">
+                    <div class="mb-4 flex flex-col gap gap-4">
+                        <span class="block w-full border-2 border-purple-500 rounded-full py-3 px-2 bg-white drop-shadow-lg text-xs sm:text-xs md:text-sm lg:text-base">
+                            MANDIRI : 1840005923469 A/N FIRNANDA RAHMAWATI
+                        </span>
+                        <span class="block w-full border-2 border-purple-500 rounded-full py-3 px-2 bg-white drop-shadow-lg text-xs sm:text-xs md:text-sm lg:text-base">
+                            DANA : 0813 2941 3574 A/N FIRNANDA RAHMAWATI
+                        </span>
+                    </div>
+                    <div class="mt-10 rounded-xl bg-gray-50">
                         <label class="block font-normal text-lg mb-1 p-2">Foto Bukti Transfer <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
                         <input type="file" name="bukti_pembayaran"
-                            class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
-                            required>
+                                class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full"
+                                required>
                     </div>
                 </div>
             </div>
