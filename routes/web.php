@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\ProdiRegistrationController;
 use App\Http\Controllers\SmaRegistrationController;
@@ -28,3 +29,6 @@ Route::post('/pendaftaran-sma', [SMAController::class, 'store'])->name('pendafta
 
 Route::get('/pendaftaran-prodi', [ProdiController::class, 'create'])->name('pendaftaranProdi.index');
 Route::post('/pendaftaran-prodi', [ProdiController::class, 'store'])->name('pendaftaranProdi.store');
+
+Route::get('/download/team/{id}', [PDFController::class, 'downloadTeamPDF'])->name('download.team.pdf');
+Route::get('/download/surat/{id}', [PDFController::class, 'downloadSuratFile'])->name('download.surat.pdf');

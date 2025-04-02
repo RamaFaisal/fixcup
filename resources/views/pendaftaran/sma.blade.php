@@ -218,7 +218,7 @@
                             required>
                     </div>
                     <div class="mb-4">
-                        <label class="block font-normal text-lg mb-1 p-2">Surat Rekomendasi dari Sekolah <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
+                        <label class="block font-normal text-lg mb-1 p-2">Surat Rekomendasi dari Sekolah <span class="text-gray-400 font-normal">(pdf, jpg, jpeg, png)</span></label>
                         <input type="file" name="surat_rekomendasi"
                             class="block border-2 border-purple-500 rounded-full p-2 bg-white text-sm text-gray-500 drop-shadow-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-white hover:file:bg-gray-500 w-full">
                     </div>
@@ -258,6 +258,7 @@
                         <span class="block w-full border-2 border-purple-500 rounded-full py-3 px-2 bg-white drop-shadow-lg text-xs sm:text-xs md:text-sm lg:text-base">
                             DANA : 0813 2941 3574 A/N FIRNANDA RAHMAWATI
                         </span>
+                        <span class="text-red-400 text-xs md:text-sm lg:text-base">*Pastikan nama rekening tujuan anda sudah benar sebelum melakukan pembayaran (a.n FIRNANDA RAHMAWATI)</span>
                     </div>
                     <div class="mt-10 rounded-xl bg-gray-50">
                         <label class="block font-normal text-lg mb-1 p-2">Foto Bukti Transfer <span class="text-gray-400 font-normal">(jpg, jpeg, png)</span></label>
