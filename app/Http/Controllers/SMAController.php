@@ -79,7 +79,7 @@ class SMAController extends Controller
         foreach ($contacts as $contact) {
             $team->contacts()->create($contact);
         }
-
+         
         // Validasi minimal 7 pemain lengkap
         $validPlayers = collect($request->players)->filter(function ($p) {
             return isset($p['nama']) && isset($p['pas_foto']) && isset($p['foto_kartu']);
