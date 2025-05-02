@@ -30,9 +30,10 @@ class PDFController extends Controller
         }
 
         $filePath = $team->document->surat_rekomendasi;
-        $fileName = 'Surat_Rekomendasi_' . $team->nama . '.pdf';
+        $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+        $fileName = 'Surat_Rekomendasi_' . $team->nama . '.' . $extension;
 
-        $storagePath = storage_path("app/public/{$filePath}");
+        $storagePath = storage_path("app/public/" . $filePath);
 
         if (!file_exists($storagePath)) {
             return back()->with('error', 'File tidak ditemukan di server.');

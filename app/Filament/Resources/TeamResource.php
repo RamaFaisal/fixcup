@@ -80,7 +80,7 @@ class TeamResource extends Resource
                 ActionsAction::make('download_surat_pdf')
                     ->label('Download Surat Rekomendasi')
                     ->icon('heroicon-o-document-text')
-                    ->url(fn(Team $team) => route('download.surat.pdf', $team->id))
+                    ->url(fn(Team $team) => route('download.surat', $team->id))
                     ->openUrlInNewTab(),
                 EditAction::make(),
                 DeleteAction::make(),
