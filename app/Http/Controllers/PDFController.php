@@ -32,12 +32,12 @@ class PDFController extends Controller
         $filePath = $team->document->surat_rekomendasi;
         $fileName = 'Surat_Rekomendasi_' . $team->nama . '.pdf';
 
-        $storagePath = "public/{$filePath}";
+        $storagePath = storage_path("app/public/{$filePath}");
 
-        if (!Storage::exists($storagePath)) {
-            return back()->with('error', 'File surat rekomendasi tidak ditemukan di server.');
+        if (!file_exists($storagePath)) {
+            return back()->with('error', 'File tidak ditemukan di server.');
         }
 
-        return Storage::download($storagePath);
+        return response()->download($storagePath, $fileName);
     }
 }
